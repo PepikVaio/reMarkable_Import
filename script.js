@@ -34,6 +34,13 @@ async function createPDF() {
 
   // Logování po uložení souboru
   console.log('PDF bylo vytvořeno a uloženo na: ' + outputPath);
+
+  // Kontrola existence souboru
+  if (fs.existsSync(outputPath)) {
+    console.log(`Soubor byl úspěšně vytvořen na: ${outputPath}`);
+  } else {
+    console.log('Chyba při vytváření souboru.');
+  }
 }
 
 createPDF();
