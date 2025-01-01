@@ -7,7 +7,9 @@ async function createPDF() {
   const fontBytes = fs.readFileSync('Ubuntu-M.ttf');
 
   const pdfDoc = await PDFDocument.create();
-  pdfDoc.registerFontkit(fontkit); // Registrování fontkit
+  
+  // Explicitně registrovat fontkit
+  pdfDoc.registerFontkit(fontkit); 
 
   const page = pdfDoc.addPage([600, 400]);
 
@@ -29,3 +31,4 @@ async function createPDF() {
 }
 
 createPDF();
+	
