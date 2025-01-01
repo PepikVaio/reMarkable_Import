@@ -1,22 +1,21 @@
 const { PDFDocument, rgb } = require('pdf-lib');
 const fs = require('fs');
-const fontkit = require('fontkit');
+const fontkit = require('fontkit');  // Importujeme fontkit
 
 async function createPDF() {
-  // Načti vlastní font
-  const fontBytes = fs.readFileSync('Ubuntu-M.ttf');
+  const fontBytes = fs.readFileSync('Ubuntu-M.ttf');  // Načteme vlastní font
 
   const pdfDoc = await PDFDocument.create();
   
-  // Explicitně registrovat fontkit
-  pdfDoc.registerFontkit(fontkit); 
+  // Explicitně registrováme fontkit
+  pdfDoc.registerFontkit(fontkit);
 
   const page = pdfDoc.addPage([600, 400]);
 
-  // Vlož vlastní font
+  // Vložení fontu
   const customFont = await pdfDoc.embedFont(fontBytes);
 
-  // Použij vlastní font pro text
+  // Použití fontu pro text
   page.drawText('Ahoj světe z pdf-lib! Čeština: ěščřžýáíé', {
     x: 50,
     y: 350,
