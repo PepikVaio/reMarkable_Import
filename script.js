@@ -3,7 +3,7 @@ const fs = require('fs');
 
 async function createPDF() {
   // Načti vlastní font
-  const fontBytes = fs.readFileSync('DejaVuSans.ttf');
+  const fontBytes = fs.readFileSync('Ubuntu-M.ttf');
 
   const pdfDoc = await PDFDocument.create();
   const page = pdfDoc.addPage([600, 400]);
