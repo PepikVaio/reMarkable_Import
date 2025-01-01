@@ -26,9 +26,9 @@ async function createPDF() {
 
   const pdfBytes = await pdfDoc.save();
   
-  // Pokud spustíš tento skript lokálně, použiješ fs pro zápis do souboru
-  // V GitHub Actions tento soubor neuložíme přímo do pracovního adresáře, ale uploadujeme ho
-  fs.writeFileSync('output.pdf', pdfBytes);  // Pro lokální testování
+	const path = require('path');
+	const outputPath = path.join(__dirname, 'output.pdf');
+	fs.writeFileSync(outputPath, pdfBytes);
 
   console.log('PDF bylo vytvořeno!');
 }
