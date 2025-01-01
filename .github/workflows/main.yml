@@ -1,16 +1,29 @@
-name: Trigger GitHub Actions from External Source
+name: Run PDF Script
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # Tento event umožní ruční spuštění workflow přes API
 
 jobs:
-  trigger-workflow:
+  run-pdf-script:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Trigger another workflow
-        run: |
-          curl -X POST \
-            -H "Authorization: token ${{ secrets.TEST }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            -d '{"ref":"main"}' \
-            "https://api.github.com/repos/your_username/your_repo/actions/workflows/your_workflow.yml/dispatches"
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run script
+        run: node script.js
+
+      - name: Upload PDF as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: output-pdf
+          path: /home/runner/work/reMarkable_Import/reMarkable_Import/output.pdf
