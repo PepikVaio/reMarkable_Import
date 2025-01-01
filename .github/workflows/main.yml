@@ -6,6 +6,7 @@ on:
 jobs:
   run-pdf-script:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -21,8 +22,8 @@ jobs:
       - name: Run script
         run: node script.js
 
-      - name: Upload generated PDF as an artifact
+      - name: Upload PDF as artifact
         uses: actions/upload-artifact@v3
         with:
-          name: generated-pdf
-          path: output.pdf
+          name: output-pdf
+          path: output.pdf  # Cesta k souboru, který chceš nahrát
