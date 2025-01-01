@@ -18,8 +18,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: List files before running script
+        run: ls -l  # Ukáže obsah adresáře před spuštěním skriptu
+
       - name: Run script
         run: node script.js
+
+      - name: List files after running script
+        run: ls -l  # Ukáže obsah adresáře po spuštění skriptu
 
       - name: Upload PDF as artifact
         uses: actions/upload-artifact@v3
