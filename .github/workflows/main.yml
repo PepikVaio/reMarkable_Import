@@ -1,12 +1,11 @@
 name: Run PDF Script
 
 on:
-  workflow_dispatch: # Tento event umožní ruční spuštění workflow přes API
+  workflow_dispatch: # Umožní ruční spuštění workflow z GitHubu
 
 jobs:
   run-pdf-script:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -14,7 +13,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
 
       - name: Install dependencies
         run: npm install
@@ -26,4 +25,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: output-pdf
-          path: /home/runner/work/reMarkable_Import/reMarkable_Import/output.pdf
+          path: ./output.pdf
