@@ -1,11 +1,14 @@
 const { PDFDocument, rgb } = require('pdf-lib');
 const fs = require('fs');
+const fontkit = require('fontkit');
 
 async function createPDF() {
   // Načti vlastní font
   const fontBytes = fs.readFileSync('Ubuntu-M.ttf');
 
   const pdfDoc = await PDFDocument.create();
+  pdfDoc.registerFontkit(fontkit); // Registrování fontkit
+
   const page = pdfDoc.addPage([600, 400]);
 
   // Vlož vlastní font
