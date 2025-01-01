@@ -1,7 +1,7 @@
 const { PDFDocument, rgb } = require('pdf-lib');
 const fs = require('fs');
 const fontkit = require('fontkit');
-const path = require('path');  // Pro manipulaci s cestami
+const path = require('path');
 
 async function createPDF() {
   const fontBytes = fs.readFileSync('Ubuntu-M.ttf');  // Načteme vlastní font
@@ -23,8 +23,10 @@ async function createPDF() {
     color: rgb(0, 0, 0),
   });
 
-  // Logování cesty před uložením souboru
+  // Cesta pro uložení souboru
   const outputPath = path.join(__dirname, 'output.pdf');
+  
+  // Logování před uložením souboru
   console.log(`Ukládám soubor na: ${outputPath}`);
 
   const pdfBytes = await pdfDoc.save();
