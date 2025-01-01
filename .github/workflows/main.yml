@@ -21,3 +21,8 @@ jobs:
       - name: Run script
         run: node script.js
 
+      - name: Upload generated PDF as an artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: generated-pdf
+          path: output.pdf

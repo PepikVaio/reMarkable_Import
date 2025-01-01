@@ -1,6 +1,6 @@
 const { PDFDocument, rgb } = require('pdf-lib');
 const fs = require('fs');
-const fontkit = require('fontkit');  // Importujeme fontkit
+const fontkit = require('fontkit');
 
 async function createPDF() {
   const fontBytes = fs.readFileSync('Ubuntu-M.ttf');  // Načteme vlastní font
@@ -25,7 +25,11 @@ async function createPDF() {
   });
 
   const pdfBytes = await pdfDoc.save();
-  fs.writeFileSync('output.pdf', pdfBytes);
+  
+  // Pokud spustíš tento skript lokálně, použiješ fs pro zápis do souboru
+  // V GitHub Actions tento soubor neuložíme přímo do pracovního adresáře, ale uploadujeme ho
+  fs.writeFileSync('output.pdf', pdfBytes);  // Pro lokální testování
+
   console.log('PDF bylo vytvořeno!');
 }
 
