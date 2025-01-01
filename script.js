@@ -7,7 +7,7 @@ async function createPDF() {
 
   const pdfDoc = await PDFDocument.create();
   
-  // Explicitně registrováme fontkit
+  // Vytvoříme instanci fontkit podle nové verze
   pdfDoc.registerFontkit(fontkit);
 
   const page = pdfDoc.addPage([600, 400]);
@@ -30,4 +30,3 @@ async function createPDF() {
 }
 
 createPDF();
-	
